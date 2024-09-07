@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/72dd3afc0a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>Ultimate Guide JavaScript <i class="fa-brands fa-js" style="color: #FFD43B;"></i></h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="introduction">
+            <article>
+                <h2>What is JavaScript?</h2>
+                <p>JavaScript is a programming language that enables you to create dynamically updating content, control multimedia, animate images, and much more. It is a core technology of the World Wide Web alongside HTML and CSS, and is supported by all modern web browsers.</p>
+            </article>
+            <article>
+                <h2>Why learn JavaScript?</h2>
+                <p>JavaScript is one of the most popular programming languages in the world. It is used to create interactive websites, web applications, games, and more. Learning JavaScript will open up a world of possibilities for you as a developer.</p>
+            </article>
+            <article>
+                <h2>How to learn JavaScript?</h2>
+                <p>There are many resources available to help you learn JavaScript, including online tutorials, books, and courses. You can also practice your skills by building projects and collaborating with other developers. </p>
+            </article>
+        </section>
+        <section>
+            <h2>JavaScript Async Function</h2>
+            <h3>JavaScript Async</h3>
+            <p>JavaScript is a single-threaded language, meaning it can only do one task at a time. However, to perform non-blocking operations like fetching data from a server or interacting with files, JavaScript supports asynchronous programming. This allows the code to execute without waiting for tasks like data fetching to complete, improving performance.</p>
+            <pre>
+                <code>
+                    function fetchData(callback) {
+                        setTimeout(() => {
+                            const data = 'Data fetched!';
+                            callback(data);
+                        }, 2000);
+                    }
+
+                    function displayData(data) {
+                        console.log(data);
+                    }
+
+                    fetchData(displayData);
+                </code>
+            </pre>
+            <h3>Callback</h3>
+            <p>A callback is a function passed into another function as an argument. It's called once the asynchronous task is completed. Callbacks were the first way of handling async code in JavaScript but often led to "callback hell" due to nested callbacks.</p>
+            <pre>
+                <code>
+                    function greeting(name) {
+                        console.log(`Hello, ${name}`);
+                    }
+                    
+                    function processUserInput(callback) {
+                        const name = "John";
+                        setTimeout(() => callback(name), 1000); // async operation
+                    }
+                    processUserInput(greeting);
+                </code>
+            </pre>
+
+            <h3>Promises</h3>
+            <p>Promises provide a way to handle async operations more elegantly than callbacks.</p>
+            <pre>
+                <code>
+                    let fetchData = new Promise((resolve, reject) => {
+                    let success = true; // simulating success
+                    if (success) resolve("Data fetched successfully!");
+                    else reject("Error fetching data.");
+                    });
+                    
+                    fetchData
+                        .then((message) => console.log(message))
+                        .catch((error) => console.log(error));
+                </code>
+            </pre>
+            <h3>Async/Await</h3>
+            <p>Async/Await is syntactic sugar built on Promises. It allows us to write asynchronous code in a more synchronous and readable manner. An `async` function always returns a Promise, and you can `await` a Promise inside it, meaning JavaScript will wait for that Promise to resolve or reject before moving on to the next line of code.</p>
+            <pre>
+                <code>
+                    async function fetchData() {
+                        try {
+                            const message = await new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    resolve("Data fetched");
+                                }, 1000);
+                            });
+                            console.log(message);
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }
+                    
+                    fetchData();
+                </code>
+            </pre>
+            <h2>Event Loop</h2>
+            <p>The Event Loop is a mechanism in JavaScript that handles the execution of multiple pieces of code, allowing non-blocking, asynchronous operations to be processed. It constantly checks the Call Stack and the Message Queue. When the Call Stack is empty, the Event Loop picks the next function in the Message Queue to execute, ensuring async code runs when ready.</p>
+            <pre>
+                <code>
+                    // Example to explain Event Loop
+                    console.log('Start');
+
+                    setTimeout(() => {
+                        console.log('Timeout Callback');
+                    }, 1000);
+
+                    console.log('End');
+                </code>      
+            </pre>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Tabata Llach Bruges. All rights reserved.</p>
+        <br>
+        <a href="https://www.linkedin.com/in/tllach/"><img src="images\linkedin_icon.svg" alt="linkedin"></a>
+        <a href="https://github.com/tllach"><img src="images\github_icon.svg" alt="github"></a>
+    </footer>
+</body>
+</html>
